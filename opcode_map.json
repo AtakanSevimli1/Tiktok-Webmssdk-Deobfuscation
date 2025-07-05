@@ -1,0 +1,425 @@
+{
+    "0": {
+        "name": "CALL_1_ARG_AND_NEW_ARRAY",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_call"},
+            {"type": "reg", "size": 16, "name": "arg_reg"},
+            {"type": "reg", "size": 16, "name": "obj_reg"},
+            {"type": "reg", "size": 16, "name": "dest_arr"},
+            {"type": "reg", "size": 16, "name": "func_reg"}
+        ],
+        "description": "reg[dest_call] = reg[func_reg].call(reg[obj_reg], reg[arg_reg]); reg[dest_arr] = []"
+    },
+    "1": {
+        "name": "DECRYPT_STRING_AND_STRICT_EQUAL",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "str_key1_reg"},
+            {"type": "reg", "size": 16, "name": "dest_str_reg"},
+            {"type": "reg", "size": 16, "name": "str_key2_reg"},
+            {"type": "reg", "size": 16, "name": "dest_cmp_reg"},
+            {"type": "reg", "size": 16, "name": "left_cmp_reg"},
+            {"type": "reg", "size": 16, "name": "right_cmp_reg"}
+        ],
+        "description": "decrypted = decrypt_str(E[str_key1_reg], E[str_key2_reg]); reg[dest_str_reg] = decrypted; reg[dest_cmp_reg] = (reg[left_cmp_reg] === reg[right_cmp_reg])"
+    },
+    "2": {
+        "name": "ADD_AND_MOVE",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_add"},
+            {"type": "reg", "size": 16, "name": "src_1"},
+            {"type": "reg", "size": 16, "name": "src_2"},
+            {"type": "reg", "size": 16, "name": "dest_move"},
+            {"type": "reg", "size": 16, "name": "src_move"}
+        ],
+        "description": "reg[dest_add] = reg[src_1] + reg[src_2]; reg[dest_move] = reg[src_move]"
+    },
+    "3": {
+        "name": "GET_PROPERTY_AND_MOVE",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_get"},
+            {"type": "reg", "size": 16, "name": "obj_reg"},
+            {"type": "reg", "size": 16, "name": "src_move"},
+            {"type": "reg", "size": 16, "name": "dest_move"},
+            {"type": "reg", "size": 16, "name": "prop_reg"}
+        ],
+        "description": "reg[dest_move] = reg[src_move]; reg[dest_get] = reg[obj_reg][reg[prop_reg]]"
+    },
+    "4": {
+        "name": "CALL_WITH_CONTEXT_2_ARGS",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_ret"},
+            {"type": "reg", "size": 16, "name": "obj_reg"},
+            {"type": "reg", "size": 16, "name": "src_move"},
+            {"type": "reg", "size": 16, "name": "arg1_reg"},
+            {"type": "reg", "size": 16, "name": "this_ctx_reg"},
+            {"type": "reg", "size": 16, "name": "arg2_reg"}
+        ],
+        "description": "reg[dest_ret] = reg[obj_reg].call(reg[this_ctx_reg], reg[arg1_reg], reg[arg2_reg]); reg[dest_ret] also gets result of a move operation (likely overwriting it)."
+    },
+    "5": {
+        "name": "DECRYPT_STRING_AND_SET_PROP",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "str_key1_reg"},
+            {"type": "reg", "size": 16, "name": "prop_reg"},
+            {"type": "reg", "size": 16, "name": "val_reg"},
+            {"type": "reg", "size": 16, "name": "str_key2_reg"},
+            {"type": "reg", "size": 16, "name": "obj_reg"},
+            {"type": "reg", "size": 16, "name": "dest_str_reg"}
+        ],
+        "description": "decrypted = decrypt_str(E[str_key1_reg], E[str_key2_reg]); reg[dest_str_reg] = decrypted; reg[obj_reg][reg[prop_reg]] = reg[val_reg]"
+    },
+    "6": {
+        "name": "CALL_0_ARGS_AND_GOTO",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"},
+            {"type": "reg", "size": 16, "name": "func_reg"},
+            {"type": "reg", "size": 16, "name": "obj_reg"},
+            {"type": "jump_target", "size": 24, "name": "target"}
+        ],
+        "description": "reg[dest_reg] = reg[func_reg].call(reg[obj_reg]); ip = target"
+    },
+    "7": {
+        "name": "CALL_1_ARG_WITH_CONTEXT_AND_MOVE",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_move"},
+            {"type": "reg", "size": 16, "name": "arg_reg"},
+            {"type": "reg", "size": 16, "name": "dest_call"},
+            {"type": "reg", "size": 16, "name": "ctx_reg"},
+            {"type": "reg", "size": 16, "name": "obj_reg"},
+            {"type": "reg", "size": 16, "name": "src_move"}
+        ],
+        "description": "reg[dest_call] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); reg[dest_move] = reg[src_move]"
+    },
+    "8": {
+        "name": "SHIFT_RIGHT_AND_BITWISE_AND",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "src_shift_reg"},
+            {"type": "reg", "size": 16, "name": "dest_shift_reg"},
+            {"type": "reg", "size": 16, "name": "src1_and_reg"},
+            {"type": "reg", "size": 16, "name": "shift_val_reg"},
+            {"type": "reg", "size": 16, "name": "dest_and_reg"},
+            {"type": "reg", "size": 16, "name": "src2_and_reg"}
+        ],
+        "description": "reg[dest_shift_reg] = reg[src_shift_reg] >> reg[shift_val_reg]; reg[dest_and_reg] = reg[src1_and_reg] & reg[src2_and_reg]"
+    },
+    "9": {
+        "name": "MOVE_REG_AND_MOVE_IMM8",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_imm_reg"},
+            {"type": "reg", "size": 16, "name": "src_reg"},
+            {"type": "imm", "size": 8, "name": "value"},
+            {"type": "reg", "size": 16, "name": "dest_reg"}
+        ],
+        "description": "reg[dest_reg] = reg[src_reg]; reg[dest_imm_reg] = value"
+    },
+    "10": {
+        "name": "MOVE",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"},
+            {"type": "reg", "size": 16, "name": "src_reg"}
+        ],
+        "description": "reg[dest_reg] = reg[src_reg]"
+    },
+    "11": {
+        "name": "GET_GLOBAL_AND_CALL_1_ARG",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "str_key1_reg"},
+            {"type": "reg", "size": 16, "name": "str_key2_reg"},
+            {"type": "reg", "size": 16, "name": "arg_reg"},
+            {"type": "reg", "size": 16, "name": "ctx_reg"},
+            {"type": "reg", "size": 16, "name": "dest_global_reg"},
+            {"type": "reg", "size": 16, "name": "dest_call_reg"}
+        ],
+        "description": "global_name = decrypt_str(E[str_key1_reg], E[str_key2_reg]); reg[dest_global_reg] = global[global_name]; reg[dest_call_reg] = reg[dest_global_reg].call(reg[ctx_reg])"
+    },
+    "12": {
+        "name": "JUMP_IF_NOT_EQUAL",
+        "operands": [
+            {"type": "jump_target", "size": 24, "name": "jump_false"},
+            {"type": "reg", "size": 16, "name": "right_reg"},
+            {"type": "jump_target", "size": 24, "name": "jump_true"},
+            {"type": "reg", "size": 16, "name": "left_reg"},
+            {"type": "reg", "size": 16, "name": "dest_cmp"},
+            {"type": "reg", "size": 16, "name": "cond_reg"}
+        ],
+        "description": "reg[dest_cmp] = (reg[left_reg] != reg[right_reg]); if (reg[cond_reg]) ip = jump_true else ip = jump_false"
+    },
+    "13": {
+        "name": "NATIVE_CREATE_CONFIG_EXCEPTION",
+        "operands": [],
+        "description": "Hardcoded function that modifies VM state to create a specific exception object."
+    },
+    "14": {
+        "name": "CREATE_CALLBACK_FUNCTIONS",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "ret1_reg"},
+            {"type": "reg", "size": 16, "name": "dest1_reg"},
+            {"type": "jump_target", "size": 24, "name": "target1"},
+            {"type": "reg", "size": 16, "name": "ret2_reg"},
+            {"type": "jump_target", "size": 24, "name": "target2"},
+            {"type": "reg", "size": 16, "name": "dest2_reg"}
+        ],
+        "description": "reg[dest1_reg] = function() { ip=target2; ...}; reg[dest2_reg] = function() { ip=target1; ...}"
+    },
+    "15": {
+        "name": "ARRAY_PUSH_2",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "val1_reg"},
+            {"type": "reg", "size": 16, "name": "val2_reg"},
+            {"type": "reg", "size": 16, "name": "array_reg"}
+        ],
+        "description": "reg[array_reg].push(reg[val1_reg], reg[val2_reg])"
+    },
+    "16": {
+        "name": "ARRAY_PUSH_2_DIFFERENT",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "val1_reg"},
+            {"type": "reg", "size": 16, "name": "array1_reg"},
+            {"type": "reg", "size": 16, "name": "val2_reg"},
+            {"type": "reg", "size": 16, "name": "array2_reg"}
+        ],
+        "description": "reg[array1_reg].push(reg[val1_reg]); reg[array2_reg].push(reg[val2_reg])"
+    },
+    "17": {
+        "name": "MOVE_AND_TYPEOF",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "src_typeof_reg"},
+            {"type": "reg", "size": 16, "name": "dest_move_reg"},
+            {"type": "reg", "size": 16, "name": "src_move_reg"},
+            {"type": "reg", "size": 16, "name": "dest_typeof_reg"}
+        ],
+        "description": "reg[dest_move_reg] = reg[src_move_reg]; reg[dest_typeof_reg] = typeof reg[src_typeof_reg]"
+    },
+    "18": {
+        "name": "CALL_1_ARG_AND_STRICT_EQUAL",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "right_cmp_reg"},
+            {"type": "reg", "size": 16, "name": "dest_call_reg"},
+            {"type": "reg", "size": 16, "name": "arg_reg"},
+            {"type": "reg", "size": 16, "name": "dest_cmp_reg"},
+            {"type": "reg", "size": 16, "name": "obj_reg"},
+            {"type": "reg", "size": 16, "name": "left_cmp_reg"},
+            {"type": "reg", "size": 16, "name": "ctx_reg"}
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); reg[dest_cmp_reg] = (reg[left_cmp_reg] === reg[right_cmp_reg])"
+    },
+    "19": {
+        "name": "CALL_3_ARGS",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "arg2_reg"},
+            {"type": "reg", "size": 16, "name": "ctx_reg"},
+            {"type": "reg", "size": 16, "name": "arg1_reg"},
+            {"type": "reg", "size": 16, "name": "arg3_reg"},
+            {"type": "reg", "size": 16, "name": "obj_reg"}
+        ],
+        "description": "reg[ctx_reg].call(reg[obj_reg], reg[arg1_reg], reg[arg2_reg], reg[arg3_reg])"
+    },
+    "20": {
+        "name": "PUSH_EXCEPTION_HANDLER",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "catch_reg"},
+            {"type": "reg", "size": 16, "name": "finally_reg"}
+        ],
+        "description": "Pushes a new exception handler to the stack with catch_reg and finally_reg."
+    },
+    "21": {
+        "name": "GET_GLOBAL",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "key2_reg"},
+            {"type": "reg", "size": 16, "name": "key1_reg"},
+            {"type": "reg", "size": 16, "name": "dest_reg"}
+        ],
+        "description": "global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_reg] = global[global_name]"
+    },
+    "22": {
+        "name": "GET_GLOBAL_AND_ARRAY_PUSH",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "key1_reg"},
+            {"type": "reg", "size": 16, "name": "array_reg"},
+            {"type": "reg", "size": 16, "name": "val_reg"},
+            {"type": "reg", "size": 16, "name": "dest_global_reg"},
+            {"type": "reg", "size": 16, "name": "key2_reg"}
+        ],
+        "description": "reg[array_reg].push(reg[val_reg]); global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name]"
+    },
+    "23": {
+        "name": "NATIVE_SEND_BEACON",
+        "operands": [],
+        "description": "Hardcoded function. Creates and dispatches an XMLHttpRequest."
+    },
+    "24": {
+        "name": "CALL_1_ARG_AND_LT",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_call_reg"},
+            {"type": "reg", "size": 16, "name": "obj_reg"},
+            {"type": "reg", "size": 16, "name": "ctx_reg"},
+            {"type": "reg", "size": 16, "name": "arg_reg"},
+            {"type": "reg", "size": 16, "name": "right_cmp_reg"},
+            {"type": "reg", "size": 16, "name": "left_cmp_reg"},
+            {"type": "reg", "size": 16, "name": "dest_cmp_reg"}
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); reg[dest_cmp_reg] = reg[left_cmp_reg] < reg[right_cmp_reg]"
+    },
+    "25": {
+        "name": "NATIVE_GET_PLUGINS",
+        "operands": [],
+        "description": "Hardcoded function that iterates navigator.plugins and collects plugin info."
+    },
+    "26": {
+        "name": "NEW_REGEXP",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "flags_reg"},
+            {"type": "reg", "size": 16, "name": "pattern_reg"}
+        ],
+        "description": "reg[dest] = new RegExp(reg[pattern_reg], reg[flags_reg])"
+    },
+    "27": {
+        "name": "MOVE_AND_ADD",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "src2_add_reg"},
+            {"type": "reg", "size": 16, "name": "src1_add_reg"},
+            {"type": "reg", "size": 16, "name": "dest_add_reg"},
+            {"type": "reg", "size": 16, "name": "src_move_reg"}
+        ],
+        "description": "reg[dest_add_reg] = reg[src_move_reg]; reg[dest_add_reg] = reg[src1_add_reg] + reg[src2_add_reg]"
+    },
+    "28": {
+        "name": "XOR",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "src2_reg"},
+            {"type": "reg", "size": 16, "name": "src1_reg"}
+        ],
+        "description": "reg[dest] = reg[src1_reg] ^ reg[src2_reg]"
+    },
+    "29": {
+        "name": "ARRAY_PUSH_3",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "array_reg"},
+            {"type": "reg", "size": 16, "name": "val3_reg"},
+            {"type": "reg", "size": 16, "name": "val1_reg"},
+            {"type": "reg", "size": 16, "name": "val2_reg"}
+        ],
+        "description": "reg[array_reg].push(reg[val1_reg], reg[val2_reg], reg[val3_reg])"
+    },
+    "30": {
+        "name": "GET_FROM_CLOSURE_AND_MOVE",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "src_reg"},
+            {"type": "reg", "size": 16, "name": "dest_move_reg"},
+            {"type": "reg", "size": 16, "name": "closure_idx"},
+            {"type": "imm", "size": 8, "name": "depth"},
+            {"type": "reg", "size": 16, "name": "dest_closure_reg"}
+        ],
+        "description": "reg[dest_closure_reg] = closure[depth][closure_idx]; reg[dest_move_reg] = reg[src_reg]"
+    },
+    "31": {
+        "name": "CALL_1_ARG_AND_JUMP",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"},
+            {"type": "reg", "size": 16, "name": "arg_reg"},
+            {"type": "reg", "size": 16, "name": "obj_reg"},
+            {"type": "jump_target", "size": 24, "name": "target"},
+            {"type": "reg", "size": 16, "name": "func_reg"}
+        ],
+        "description": "reg[dest_reg] = reg[func_reg].call(reg[obj_reg], reg[arg_reg]); ip = target"
+    },
+    "43": {
+        "name": "NEW_OBJECT",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"}
+        ],
+        "description": "reg[dest_reg] = {}"
+    },
+    "62": {
+        "name": "IN_OPERATOR",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"},
+            {"type": "reg", "size": 16, "name": "prop_reg"},
+            {"type": "reg", "size": 16, "name": "obj_reg"}
+        ],
+        "description": "reg[dest_reg] = reg[prop_reg] in reg[obj_reg]"
+    },
+    "64": {
+        "name": "TYPEOF",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"},
+            {"type": "reg", "size": 16, "name": "src_reg"}
+        ],
+        "description": "reg[dest_reg] = typeof reg[src_reg]"
+    },
+    "70": {
+        "name": "RETURN_UNDEFINED",
+        "operands": [],
+        "description": "return_reg = undefined. Marks end of a path."
+    },
+    "103": {
+        "name": "JUMP_IF",
+        "operands": [
+            {"type": "jump_target", "size": 24, "name": "jump_false"},
+            {"type": "reg", "size": 16, "name": "cond_reg"},
+            {"type": "jump_target", "size": 24, "name": "jump_true"}
+        ],
+        "description": "if (reg[cond_reg]) ip = jump_true else ip = jump_false"
+    },
+    "143": {
+        "name": "SUBTRACT",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"},
+            {"type": "reg", "size": 16, "name": "src2_reg"},
+            {"type": "reg", "size": 16, "name": "src1_reg"}
+        ],
+        "description": "reg[dest_reg] = reg[src1_reg] - reg[src2_reg]"
+    },
+    "162": {
+        "name": "THROW",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "err_reg"}
+        ],
+        "description": "throw reg[err_reg]"
+    },
+    "163": {
+        "name": "NEW_ARRAY",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"}
+        ],
+        "description": "reg[dest_reg] = []"
+    },
+    "172": {
+        "name": "ARRAY_PUSH",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "array_reg"},
+            {"type": "reg", "size": 16, "name": "value_reg"}
+        ],
+        "description": "reg[array_reg].push(reg[value_reg])"
+    },
+    "208": {
+        "name": "ADD",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"},
+            {"type": "reg", "size": 16, "name": "src2_reg"},
+            {"type": "reg", "size": 16, "name": "src1_reg"}
+        ],
+        "description": "reg[dest_reg] = reg[src1_reg] + reg[src2_reg]"
+    },
+    "213": {
+        "name": "STRICT_EQUAL",
+        "operands": [
+            {"type": "reg", "size": 16, "name": "dest_reg"},
+            {"type": "reg", "size": 16, "name": "left_reg"},
+            {"type": "reg", "size": 16, "name": "right_reg"}
+        ],
+        "description": "reg[dest_reg] = (reg[left_reg] === reg[right_reg])"
+    },
+    "222": {
+        "name": "GOTO",
+        "operands": [
+            {"type": "jump_target", "size": 24, "name": "target"}
+        ],
+        "description": "ip = target"
+    },
+    "236": {
+        "name": "POP_EXCEPTION_HANDLER",
+        "operands": [],
+        "description": "Pops one exception handler frame from the call stack."
+    }
+}
