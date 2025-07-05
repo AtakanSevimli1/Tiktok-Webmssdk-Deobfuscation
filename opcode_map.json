@@ -2,145 +2,370 @@
     "0": {
         "name": "CALL_1_ARG_AND_NEW_ARRAY",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_call"},
-            {"type": "reg", "size": 16, "name": "arg_reg"},
-            {"type": "reg", "size": 16, "name": "obj_reg"},
-            {"type": "reg", "size": 16, "name": "dest_arr"},
-            {"type": "reg", "size": 16, "name": "func_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_arr"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "func_reg"
+            }
         ],
         "description": "reg[dest_call] = reg[func_reg].call(reg[obj_reg], reg[arg_reg]); reg[dest_arr] = []"
     },
     "1": {
         "name": "DECRYPT_STRING_AND_STRICT_EQUAL",
         "operands": [
-            {"type": "reg", "size": 16, "name": "str_key1_reg"},
-            {"type": "reg", "size": 16, "name": "dest_str_reg"},
-            {"type": "reg", "size": 16, "name": "str_key2_reg"},
-            {"type": "reg", "size": 16, "name": "dest_cmp_reg"},
-            {"type": "reg", "size": 16, "name": "left_cmp_reg"},
-            {"type": "reg", "size": 16, "name": "right_cmp_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "str_key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "str_key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_cmp_reg"
+            }
         ],
         "description": "decrypted = decrypt_str(E[str_key1_reg], E[str_key2_reg]); reg[dest_str_reg] = decrypted; reg[dest_cmp_reg] = (reg[left_cmp_reg] === reg[right_cmp_reg])"
     },
     "2": {
         "name": "ADD_AND_MOVE",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_add"},
-            {"type": "reg", "size": 16, "name": "src_1"},
-            {"type": "reg", "size": 16, "name": "src_2"},
-            {"type": "reg", "size": 16, "name": "dest_move"},
-            {"type": "reg", "size": 16, "name": "src_move"}
+            { "type": "reg", "size": 16, "name": "dest_move_reg" },
+            { "type": "reg", "size": 16, "name": "src_move_reg" },
+            { "type": "reg", "size": 16, "name": "src2_add_reg" },
+            { "type": "reg", "size": 16, "name": "src1_add_reg" },
+            { "type": "reg", "size": 16, "name": "dest_add_reg" }
         ],
-        "description": "reg[dest_add] = reg[src_1] + reg[src_2]; reg[dest_move] = reg[src_move]"
+        "description": "reg[dest_add] = reg[src1_add] + reg[src2_add]; reg[dest_move] = reg[src_move];"
     },
     "3": {
         "name": "GET_PROPERTY_AND_MOVE",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_get"},
-            {"type": "reg", "size": 16, "name": "obj_reg"},
-            {"type": "reg", "size": 16, "name": "src_move"},
-            {"type": "reg", "size": 16, "name": "dest_move"},
-            {"type": "reg", "size": 16, "name": "prop_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
         ],
         "description": "reg[dest_move] = reg[src_move]; reg[dest_get] = reg[obj_reg][reg[prop_reg]]"
     },
     "4": {
-        "name": "CALL_WITH_CONTEXT_2_ARGS",
+        "name": "CALL_2_ARGS_AND_MOVE",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_ret"},
-            {"type": "reg", "size": 16, "name": "obj_reg"},
-            {"type": "reg", "size": 16, "name": "src_move"},
-            {"type": "reg", "size": 16, "name": "arg1_reg"},
-            {"type": "reg", "size": 16, "name": "this_ctx_reg"},
-            {"type": "reg", "size": 16, "name": "arg2_reg"}
+            { "type": "reg", "size": 16, "name": "dest_move_reg" },
+            { "type": "reg", "size": 16, "name": "func_reg" },
+            { "type": "reg", "size": 16, "name": "src_move_reg" },
+            { "type": "reg", "size": 16, "name": "arg1_reg" },
+            { "type": "reg", "size": 16, "name": "ctx_reg" },
+            { "type": "reg", "size": 16, "name": "arg2_reg" },
+            { "type": "reg", "size": 16, "name": "dest_call_reg" }
         ],
-        "description": "reg[dest_ret] = reg[obj_reg].call(reg[this_ctx_reg], reg[arg1_reg], reg[arg2_reg]); reg[dest_ret] also gets result of a move operation (likely overwriting it)."
+        "description": "reg[dest_call_reg] = reg[func_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg]); reg[dest_move_reg] = reg[src_move_reg];"
     },
     "5": {
         "name": "DECRYPT_STRING_AND_SET_PROP",
         "operands": [
-            {"type": "reg", "size": 16, "name": "str_key1_reg"},
-            {"type": "reg", "size": 16, "name": "prop_reg"},
-            {"type": "reg", "size": 16, "name": "val_reg"},
-            {"type": "reg", "size": 16, "name": "str_key2_reg"},
-            {"type": "reg", "size": 16, "name": "obj_reg"},
-            {"type": "reg", "size": 16, "name": "dest_str_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "str_key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "str_key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            }
         ],
         "description": "decrypted = decrypt_str(E[str_key1_reg], E[str_key2_reg]); reg[dest_str_reg] = decrypted; reg[obj_reg][reg[prop_reg]] = reg[val_reg]"
     },
     "6": {
         "name": "CALL_0_ARGS_AND_GOTO",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"},
-            {"type": "reg", "size": 16, "name": "func_reg"},
-            {"type": "reg", "size": 16, "name": "obj_reg"},
-            {"type": "jump_target", "size": 24, "name": "target"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "func_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
         ],
         "description": "reg[dest_reg] = reg[func_reg].call(reg[obj_reg]); ip = target"
     },
     "7": {
         "name": "CALL_1_ARG_WITH_CONTEXT_AND_MOVE",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_move"},
-            {"type": "reg", "size": 16, "name": "arg_reg"},
-            {"type": "reg", "size": 16, "name": "dest_call"},
-            {"type": "reg", "size": 16, "name": "ctx_reg"},
-            {"type": "reg", "size": 16, "name": "obj_reg"},
-            {"type": "reg", "size": 16, "name": "src_move"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move"
+            }
         ],
         "description": "reg[dest_call] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); reg[dest_move] = reg[src_move]"
     },
     "8": {
         "name": "SHIFT_RIGHT_AND_BITWISE_AND",
         "operands": [
-            {"type": "reg", "size": 16, "name": "src_shift_reg"},
-            {"type": "reg", "size": 16, "name": "dest_shift_reg"},
-            {"type": "reg", "size": 16, "name": "src1_and_reg"},
-            {"type": "reg", "size": 16, "name": "shift_val_reg"},
-            {"type": "reg", "size": 16, "name": "dest_and_reg"},
-            {"type": "reg", "size": 16, "name": "src2_and_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_shift_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_shift_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_and_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "shift_val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_and_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_and_reg"
+            }
         ],
         "description": "reg[dest_shift_reg] = reg[src_shift_reg] >> reg[shift_val_reg]; reg[dest_and_reg] = reg[src1_and_reg] & reg[src2_and_reg]"
     },
     "9": {
         "name": "MOVE_REG_AND_MOVE_IMM8",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_imm_reg"},
-            {"type": "reg", "size": 16, "name": "src_reg"},
-            {"type": "imm", "size": 8, "name": "value"},
-            {"type": "reg", "size": 16, "name": "dest_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_imm_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "value"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            }
         ],
         "description": "reg[dest_reg] = reg[src_reg]; reg[dest_imm_reg] = value"
     },
     "10": {
         "name": "MOVE",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"},
-            {"type": "reg", "size": 16, "name": "src_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            }
         ],
         "description": "reg[dest_reg] = reg[src_reg]"
     },
     "11": {
         "name": "GET_GLOBAL_AND_CALL_1_ARG",
         "operands": [
-            {"type": "reg", "size": 16, "name": "str_key1_reg"},
-            {"type": "reg", "size": 16, "name": "str_key2_reg"},
-            {"type": "reg", "size": 16, "name": "arg_reg"},
-            {"type": "reg", "size": 16, "name": "ctx_reg"},
-            {"type": "reg", "size": 16, "name": "dest_global_reg"},
-            {"type": "reg", "size": 16, "name": "dest_call_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "str_key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "str_key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            }
         ],
         "description": "global_name = decrypt_str(E[str_key1_reg], E[str_key2_reg]); reg[dest_global_reg] = global[global_name]; reg[dest_call_reg] = reg[dest_global_reg].call(reg[ctx_reg])"
     },
     "12": {
         "name": "JUMP_IF_NOT_EQUAL",
         "operands": [
-            {"type": "jump_target", "size": 24, "name": "jump_false"},
-            {"type": "reg", "size": 16, "name": "right_reg"},
-            {"type": "jump_target", "size": 24, "name": "jump_true"},
-            {"type": "reg", "size": 16, "name": "left_reg"},
-            {"type": "reg", "size": 16, "name": "dest_cmp"},
-            {"type": "reg", "size": 16, "name": "cond_reg"}
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            }
         ],
         "description": "reg[dest_cmp] = (reg[left_reg] != reg[right_reg]); if (reg[cond_reg]) ip = jump_true else ip = jump_false"
     },
@@ -152,93 +377,249 @@
     "14": {
         "name": "CREATE_CALLBACK_FUNCTIONS",
         "operands": [
-            {"type": "reg", "size": 16, "name": "ret1_reg"},
-            {"type": "reg", "size": 16, "name": "dest1_reg"},
-            {"type": "jump_target", "size": 24, "name": "target1"},
-            {"type": "reg", "size": 16, "name": "ret2_reg"},
-            {"type": "jump_target", "size": 24, "name": "target2"},
-            {"type": "reg", "size": 16, "name": "dest2_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ret1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest1_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target1"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ret2_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target2"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest2_reg"
+            }
         ],
         "description": "reg[dest1_reg] = function() { ip=target2; ...}; reg[dest2_reg] = function() { ip=target1; ...}"
     },
     "15": {
         "name": "ARRAY_PUSH_2",
         "operands": [
-            {"type": "reg", "size": 16, "name": "val1_reg"},
-            {"type": "reg", "size": 16, "name": "val2_reg"},
-            {"type": "reg", "size": 16, "name": "array_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            }
         ],
         "description": "reg[array_reg].push(reg[val1_reg], reg[val2_reg])"
     },
     "16": {
         "name": "ARRAY_PUSH_2_DIFFERENT",
         "operands": [
-            {"type": "reg", "size": 16, "name": "val1_reg"},
-            {"type": "reg", "size": 16, "name": "array1_reg"},
-            {"type": "reg", "size": 16, "name": "val2_reg"},
-            {"type": "reg", "size": 16, "name": "array2_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array2_reg"
+            }
         ],
         "description": "reg[array1_reg].push(reg[val1_reg]); reg[array2_reg].push(reg[val2_reg])"
     },
     "17": {
         "name": "MOVE_AND_TYPEOF",
         "operands": [
-            {"type": "reg", "size": 16, "name": "src_typeof_reg"},
-            {"type": "reg", "size": 16, "name": "dest_move_reg"},
-            {"type": "reg", "size": 16, "name": "src_move_reg"},
-            {"type": "reg", "size": 16, "name": "dest_typeof_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_typeof_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_typeof_reg"
+            }
         ],
         "description": "reg[dest_move_reg] = reg[src_move_reg]; reg[dest_typeof_reg] = typeof reg[src_typeof_reg]"
     },
     "18": {
         "name": "CALL_1_ARG_AND_STRICT_EQUAL",
         "operands": [
-            {"type": "reg", "size": 16, "name": "right_cmp_reg"},
-            {"type": "reg", "size": 16, "name": "dest_call_reg"},
-            {"type": "reg", "size": 16, "name": "arg_reg"},
-            {"type": "reg", "size": 16, "name": "dest_cmp_reg"},
-            {"type": "reg", "size": 16, "name": "obj_reg"},
-            {"type": "reg", "size": 16, "name": "left_cmp_reg"},
-            {"type": "reg", "size": 16, "name": "ctx_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            }
         ],
         "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); reg[dest_cmp_reg] = (reg[left_cmp_reg] === reg[right_cmp_reg])"
     },
     "19": {
         "name": "CALL_3_ARGS",
         "operands": [
-            {"type": "reg", "size": 16, "name": "arg2_reg"},
-            {"type": "reg", "size": 16, "name": "ctx_reg"},
-            {"type": "reg", "size": 16, "name": "arg1_reg"},
-            {"type": "reg", "size": 16, "name": "arg3_reg"},
-            {"type": "reg", "size": 16, "name": "obj_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            }
         ],
         "description": "reg[ctx_reg].call(reg[obj_reg], reg[arg1_reg], reg[arg2_reg], reg[arg3_reg])"
     },
     "20": {
         "name": "PUSH_EXCEPTION_HANDLER",
         "operands": [
-            {"type": "reg", "size": 16, "name": "catch_reg"},
-            {"type": "reg", "size": 16, "name": "finally_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "catch_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "finally_reg"
+            }
         ],
         "description": "Pushes a new exception handler to the stack with catch_reg and finally_reg."
     },
     "21": {
         "name": "GET_GLOBAL",
         "operands": [
-            {"type": "reg", "size": 16, "name": "key2_reg"},
-            {"type": "reg", "size": 16, "name": "key1_reg"},
-            {"type": "reg", "size": 16, "name": "dest_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            }
         ],
         "description": "global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_reg] = global[global_name]"
     },
     "22": {
         "name": "GET_GLOBAL_AND_ARRAY_PUSH",
         "operands": [
-            {"type": "reg", "size": 16, "name": "key1_reg"},
-            {"type": "reg", "size": 16, "name": "array_reg"},
-            {"type": "reg", "size": 16, "name": "val_reg"},
-            {"type": "reg", "size": 16, "name": "dest_global_reg"},
-            {"type": "reg", "size": 16, "name": "key2_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
         ],
         "description": "reg[array_reg].push(reg[val_reg]); global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name]"
     },
@@ -250,13 +631,41 @@
     "24": {
         "name": "CALL_1_ARG_AND_LT",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_call_reg"},
-            {"type": "reg", "size": 16, "name": "obj_reg"},
-            {"type": "reg", "size": 16, "name": "ctx_reg"},
-            {"type": "reg", "size": 16, "name": "arg_reg"},
-            {"type": "reg", "size": 16, "name": "right_cmp_reg"},
-            {"type": "reg", "size": 16, "name": "left_cmp_reg"},
-            {"type": "reg", "size": 16, "name": "dest_cmp_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            }
         ],
         "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); reg[dest_cmp_reg] = reg[left_cmp_reg] < reg[right_cmp_reg]"
     },
@@ -268,158 +677,5151 @@
     "26": {
         "name": "NEW_REGEXP",
         "operands": [
-            {"type": "reg", "size": 16, "name": "flags_reg"},
-            {"type": "reg", "size": 16, "name": "pattern_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "flags_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "pattern_reg"
+            }
         ],
         "description": "reg[dest] = new RegExp(reg[pattern_reg], reg[flags_reg])"
     },
     "27": {
         "name": "MOVE_AND_ADD",
         "operands": [
-            {"type": "reg", "size": 16, "name": "src2_add_reg"},
-            {"type": "reg", "size": 16, "name": "src1_add_reg"},
-            {"type": "reg", "size": 16, "name": "dest_add_reg"},
-            {"type": "reg", "size": 16, "name": "src_move_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_add_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_add_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_add_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            }
         ],
         "description": "reg[dest_add_reg] = reg[src_move_reg]; reg[dest_add_reg] = reg[src1_add_reg] + reg[src2_add_reg]"
     },
     "28": {
         "name": "XOR",
         "operands": [
-            {"type": "reg", "size": 16, "name": "src2_reg"},
-            {"type": "reg", "size": 16, "name": "src1_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_reg"
+            }
         ],
         "description": "reg[dest] = reg[src1_reg] ^ reg[src2_reg]"
     },
     "29": {
         "name": "ARRAY_PUSH_3",
         "operands": [
-            {"type": "reg", "size": 16, "name": "array_reg"},
-            {"type": "reg", "size": 16, "name": "val3_reg"},
-            {"type": "reg", "size": 16, "name": "val1_reg"},
-            {"type": "reg", "size": 16, "name": "val2_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            }
         ],
         "description": "reg[array_reg].push(reg[val1_reg], reg[val2_reg], reg[val3_reg])"
     },
     "30": {
         "name": "GET_FROM_CLOSURE_AND_MOVE",
         "operands": [
-            {"type": "reg", "size": 16, "name": "src_reg"},
-            {"type": "reg", "size": 16, "name": "dest_move_reg"},
-            {"type": "reg", "size": 16, "name": "closure_idx"},
-            {"type": "imm", "size": 8, "name": "depth"},
-            {"type": "reg", "size": 16, "name": "dest_closure_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "closure_idx"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "depth"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_closure_reg"
+            }
         ],
         "description": "reg[dest_closure_reg] = closure[depth][closure_idx]; reg[dest_move_reg] = reg[src_reg]"
     },
     "31": {
         "name": "CALL_1_ARG_AND_JUMP",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"},
-            {"type": "reg", "size": 16, "name": "arg_reg"},
-            {"type": "reg", "size": 16, "name": "obj_reg"},
-            {"type": "jump_target", "size": 24, "name": "target"},
-            {"type": "reg", "size": 16, "name": "func_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "func_reg"
+            }
         ],
         "description": "reg[dest_reg] = reg[func_reg].call(reg[obj_reg], reg[arg_reg]); ip = target"
+    },
+    "32": {
+        "name": "GET_GLOBAL_AND_CALL_0_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "str_key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "str_key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            }
+        ],
+        "description": "global_name = decrypt_str(E[str_key1_reg], E[str_key2_reg]); reg[dest_global_reg] = global[global_name]; reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg]);"
+    },
+    "33": {
+        "name": "NATIVE_CHECK_PATH",
+        "operands": [],
+        "description": "Hardcoded function. Checks if window._mssdk._enablePathListRegex matches current path. Returns boolean."
+    },
+    "34": {
+        "name": "SET_PROP_AND_GET_PROP",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj1_prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj2_prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_set_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj2_reg"
+            }
+        ],
+        "description": "reg[dest_set_reg] = (reg[obj1_reg][reg[obj1_prop_reg]] = reg[val_reg]); reg[dest_get_reg] = reg[obj2_reg][reg[obj2_prop_reg]];"
+    },
+    "35": {
+        "name": "MOVE_AND_BITWISE_AND",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_and_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_and_reg"
+            }
+        ],
+        "description": "reg[dest_move_reg] = reg[src_move_reg]; reg[dest_and_reg] = reg[src1_and_reg] & reg[src2_and_reg];"
+    },
+    "36": {
+        "name": "MOVE_IMMEDIATE_16",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest2_reg"
+            },
+            {
+                "type": "imm",
+                "size": 16,
+                "name": "imm_val1"
+            },
+            {
+                "type": "imm",
+                "size": 16,
+                "name": "imm_val2"
+            }
+        ],
+        "description": "reg[dest2_reg] = imm_val1; reg[dest1_reg] = imm_val2;"
+    },
+    "37": {
+        "name": "DECRYPT_STRING_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            }
+        ],
+        "description": "global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global_name; reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "38": {
+        "name": "CREATE_UNDEFINED_REGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "reg_idx_1"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "reg_idx_2"
+            }
+        ],
+        "description": "reg[reg_idx_1] = {v: undefined}; reg[reg_idx_2] = {v: undefined};"
+    },
+    "39": {
+        "name": "NATIVE_GET_HOST",
+        "operands": [],
+        "description": "Hardcoded function that determines API host based on region config and returns it."
+    },
+    "40": {
+        "name": "JUMP_IF_CALL_0_ARGS",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "func_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            }
+        ],
+        "description": "reg[dest] = reg[func_reg].call(reg[obj_reg]); if (reg[cond_reg]) ip = jump_true; else ip = jump_false;"
+    },
+    "41": {
+        "name": "GET_PROP_AND_GET_GLOBAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name];"
+    },
+    "42": {
+        "name": "JUMP",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "ip = target"
     },
     "43": {
         "name": "NEW_OBJECT",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            }
         ],
         "description": "reg[dest_reg] = {}"
+    },
+    "44": {
+        "name": "MOVE_IMM8",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "value"
+            }
+        ],
+        "description": "reg[dest_reg] = value"
+    },
+	"45": {
+        "name": "MOVE_IMM8_AND_CREATE_UNDEFINED_REG",
+        "operands": [
+            { "type": "reg", "size": 16, "name": "dest_imm_reg" },
+            { "type": "reg", "size": 16, "name": "dest_undef_reg" },
+            { "type": "imm", "size": 8,  "name": "value" }
+        ],
+        "description": "reg[dest_imm_reg] = value; reg[dest_undef_reg] = { v: undefined };"
+    },
+    "46": {
+        "name": "NATIVE_GET_STORAGE",
+        "operands": [],
+        "description": "Hardcoded function to get an item from sessionStorage, localStorage, or document.cookie."
+    },
+    "47": {
+        "name": "MOVE_AND_SHIFT_RIGHT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_shift_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_shift_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_shift_reg"
+            }
+        ],
+        "description": "reg[dest_move_reg] = reg[src_move_reg]; reg[dest_shift_reg] = reg[src1_shift_reg] >> reg[src2_shift_reg];"
+    },
+    "48": {
+        "name": "INCREMENT_AND_GOTO",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "reg_to_inc"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "reg[reg_to_inc]++; ip = target;"
+    },
+    "49": {
+        "name": "MOVE_IMM8_AND_GET_GLOBAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_imm_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "value"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            }
+        ],
+        "description": "reg[dest_imm_reg] = value; global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name];"
+    },
+    "50": {
+        "name": "NATIVE_BITWISE_AND_2^32-1",
+        "operands": [],
+        "description": "Hardcoded function. Performs bitwise AND on the first argument with 4294967295."
+    },
+    "51": {
+        "name": "RETURN_EMPTY_STRING",
+        "operands": [],
+        "description": "return_reg = \"\""
+    },
+    "52": {
+        "name": "GET_PROPERTY_FROM_GLOBAL_B",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_index"
+            }
+        ],
+        "description": "reg[dest] = b[prop_index]"
+    },
+    "53": {
+        "name": "BITWISE_OR_AND_GOTO",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "reg[dest] = reg[dest] | reg[src2_reg]; ip = target;"
+    },
+    "54": {
+        "name": "CALL_1_ARG_AND_NEW_OBJECT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_obj_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); reg[dest_obj_reg] = {};"
+    },
+    "55": {
+        "name": "GET_GLOBAL_AND_NEW_INSTANCE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "constructor_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_new_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            }
+        ],
+        "description": "global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name]; reg[dest_new_reg] = new reg[constructor_reg](reg[arg_reg]);"
+    },
+    "56": {
+        "name": "GET_PROPERTIES",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest2_reg"
+            }
+        ],
+        "description": "reg[dest1_reg] = reg[obj1_reg][reg[prop1_reg]]; reg[dest2_reg] = reg[obj2_reg][reg[prop2_reg]];"
+    },
+    "57": {
+        "name": "DECRYPT_AND_CALL_2_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg]);"
+    },
+    "58": {
+        "name": "CALL_WITH_CONTEXT_2_ARGS_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg]); reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "59": {
+        "name": "NEW_OBJECT_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
+        ],
+        "description": "reg[dest_obj_reg] = {}; str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
+    },
+	"60": {
+        "name": "TYPEOF_ROBUST",
+        "operands": [],
+        "description": "Performs a 'typeof' operation on the first argument passed to the native call (n.u[6][0]). This implementation includes a polyfill to correctly handle Symbol types. The resulting string (e.g., 'string', 'number', 'symbol') is placed in the return register (n.u[4])."
+    },
+    "61": {
+        "name": "MOVE_IMM16",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "imm",
+                "size": 16,
+                "name": "value"
+            }
+        ],
+        "description": "reg[dest_reg] = value"
     },
     "62": {
         "name": "IN_OPERATOR",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"},
-            {"type": "reg", "size": 16, "name": "prop_reg"},
-            {"type": "reg", "size": 16, "name": "obj_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            }
         ],
         "description": "reg[dest_reg] = reg[prop_reg] in reg[obj_reg]"
+    },
+    "63": {
+        "name": "MOVE_REGS_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_reg"
+            }
+        ],
+        "description": "reg[dest1_reg] = reg[src1_reg]; reg[dest2_reg] = reg[src2_reg];"
     },
     "64": {
         "name": "TYPEOF",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"},
-            {"type": "reg", "size": 16, "name": "src_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            }
         ],
         "description": "reg[dest_reg] = typeof reg[src_reg]"
+    },
+    "65": {
+        "name": "TO_NUMBER",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            }
+        ],
+        "description": "reg[dest] = +reg[src_reg]"
+    },
+    "66": {
+        "name": "SET_PROPERTY_AND_GOTO",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = (reg[obj_reg][reg[prop_reg]] = reg[val_reg]); ip = target"
+    },
+    "67": {
+        "name": "JUMP_IF_NOT_STRICT_EQUAL",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            }
+        ],
+        "description": "reg[dest_cmp] = (reg[left_reg] !== reg[right_reg]); if (reg[cond_reg]) ip = jump_true else ip = jump_false"
+    },
+    "68": {
+        "name": "NATIVE_SET_API_HOST",
+        "operands": [],
+        "description": "Hardcoded function that sets window._mssdk.cacheOpts[aid].apiHost."
+    },
+    "69": {
+        "name": "CALL_0_ARGS_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg]); str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
     },
     "70": {
         "name": "RETURN_UNDEFINED",
         "operands": [],
         "description": "return_reg = undefined. Marks end of a path."
     },
+    "71": {
+        "name": "DEFINE_PROPERTIES_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            }
+        ],
+        "description": "Object.defineProperty(reg[obj_reg], reg[prop1_reg], {value: reg[val1_reg], ...}); Object.defineProperty(reg[obj_reg], reg[prop2_reg], {value: reg[val2_reg], ...});"
+    },
+    "72": {
+        "name": "NATIVE_DECODE_WORDS",
+        "operands": [],
+        "description": "Hardcoded function that decodes an array of numbers into a string using a char map."
+    },
+    "73": {
+        "name": "DECRYPT_AND_STRICT_EQUAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest_cmp_reg] = (reg[left_reg] == reg[right_reg]);"
+    },
+    "74": {
+        "name": "ARRAY_PUSH_3_AND_DECRYPT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[array_reg].push(reg[val1_reg], reg[val2_reg], reg[val3_reg]);"
+    },
+    "75": {
+        "name": "GET_FROM_CLOSURE_ARRAY_AND_CREATE_CALLBACK",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ret_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_func_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "closure_idx"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "reg[dest_val_reg] = closure[6][closure_idx]; reg[dest_func_reg] = function() { ip = target; ... };"
+    },
+    "76": {
+        "name": "MOVE_IMM8_AND_GET_FROM_CLOSURE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_imm_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_closure_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_closure_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "imm_value"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "depth"
+            }
+        ],
+        "description": "reg[dest_imm_reg] = imm_value; reg[dest_closure_reg] = closure[depth][src_closure_reg];"
+    },
+    "77": {
+        "name": "DECRYPT_AND_CALL_3_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg], reg[arg3_reg]);"
+    },
+    "78": {
+        "name": "NATIVE_INTEROP_DEFAULT",
+        "operands": [],
+        "description": "Hardcoded function that handles ES module interop, returning `module.default` if it exists, otherwise wrapping the module."
+    },
+    "79": {
+        "name": "JUMP_IF_LT",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            }
+        ],
+        "description": "reg[dest_cmp] = (reg[left_reg] < reg[right_reg]); if (reg[cond_reg]) ip = jump_true else ip = jump_false"
+    },
+    "80": {
+        "name": "NATIVE_INCREMENT_ARRAY_ELEMENT",
+        "operands": [],
+        "description": "Hardcoded function that increments an element of an array (arr[12] = arr[12]+1)."
+    },
+    "81": {
+        "name": "DECRYPT_AND_ADD",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_add_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_add_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_add_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest_add_reg] = reg[src1_add_reg] + reg[src2_add_reg];"
+    },
+    "82": {
+        "name": "ADD_AND_ADD",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_2_reg"
+            }
+        ],
+        "description": "reg[dest1_reg] = reg[src1_1_reg] + reg[src1_2_reg]; reg[dest2_reg] = reg[src2_1_reg] + reg[src2_2_reg];"
+    },
+    "83": {
+        "name": "NATIVE_BITWISE_ROTATE_LEFT",
+        "operands": [],
+        "description": "Hardcoded function. Performs bitwise rotate left on first argument by second argument bits."
+    },
+    "84": {
+        "name": "SET_PROP_AND_GET_GLOBAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            }
+        ],
+        "description": "Object.defineProperty(reg[obj_reg], reg[prop_reg], {value: reg[val_reg], ...}); global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name];"
+    },
+    "85": {
+        "name": "NATIVE_ENCODE_STRING_TO_WORDS",
+        "operands": [],
+        "description": "Hardcoded function to encode a string into an array of 32-bit words."
+    },
+    "86": {
+        "name": "GET_PROPERTY_AND_CALL_0_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_call_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_call_reg][reg[prop_reg]]; reg[dest] = reg[obj_reg].call(reg[ctx_reg]);"
+    },
+    "87": {
+        "name": "GET_CLOSURE_ARG_AND_MOVE_IMM8",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_arg_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "imm_value"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_imm_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "arg_index"
+            }
+        ],
+        "description": "reg[dest_arg_reg] = arguments[arg_index]; reg[dest_imm_reg] = imm_value;"
+    },
+    "88": {
+        "name": "GET_PROP_AND_STRICT_EQUAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_cmp_reg] = (reg[left_reg] === reg[right_reg]);"
+    },
+    "89": {
+        "name": "GET_GLOBAL_AND_NEW_OBJECT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
+        ],
+        "description": "reg[dest_obj_reg] = {}; global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name];"
+    },
+    "90": {
+        "name": "JUMP_IF",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            }
+        ],
+        "description": "if (reg[cond_reg]) ip = jump_true; else ip = jump_false;"
+    },
+    "91": {
+        "name": "NATIVE_TRIGGER_PAGE_UNLOAD_EVENT",
+        "operands": [],
+        "description": "Hardcoded function. Dispatches a custom 'pageUnload' event if it hasn't been dispatched before."
+    },
+    "92": {
+        "name": "GET_CLOSURE_ARG_AND_MOVE_IMM8_2",
+        "operands": [
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "depth"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_closure_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "closure_idx"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_closure1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_closure2_reg"
+            }
+        ],
+        "description": "reg[dest_closure1_reg] = closure[depth][src_closure_reg]; reg[dest_closure2_reg] = closure[depth][closure_idx];"
+    },
+    "93": {
+        "name": "GET_PROP_AND_NEW_OBJECT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_obj_reg] = {};"
+    },
+    "94": {
+        "name": "NEW_ARRAY_AND_GET_GLOBAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_arr_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            }
+        ],
+        "description": "reg[dest_arr_reg] = []; global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name];"
+    },
+    "95": {
+        "name": "NATIVE_PERF_SIGNAL",
+        "operands": [],
+        "description": "Hardcoded function that creates a performance signal object with subscribe, setOptions, and isSignalComplete methods."
+    },
+    "96": {
+        "name": "NATIVE_SERIALIZE_MS_DATA",
+        "operands": [],
+        "description": "Hardcoded function to serialize data into a specific protobuf-like structure for reporting."
+    },
+    "97": {
+        "name": "GOTO_IF_TRUE_ELSE_GOTO",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            }
+        ],
+        "description": "if (reg[cond_reg]) ip = jump_true; else ip = jump_false;"
+    },
+    "98": {
+        "name": "NATIVE_GET_PLUGIN_INFO_STRING",
+        "operands": [],
+        "description": "Hardcoded function that retrieves a cached string of navigator plugin information or generates it if not present."
+    },
+    "99": {
+        "name": "NEGATE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            }
+        ],
+        "description": "reg[dest] = -reg[src_reg];"
+    },
+    "100": {
+        "name": "CALL_1_ARG_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
+    },
+    "101": {
+        "name": "NEGATE_AND_GOTO",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "reg[dest_reg] = -reg[src_reg]; ip = target;"
+    },
+    "102": {
+        "name": "NATIVE_GET_REPORTING_URLS",
+        "operands": [],
+        "description": "Hardcoded function to configure and return an object with lastChanceUrl and reportUrls."
+    },
     "103": {
         "name": "JUMP_IF",
         "operands": [
-            {"type": "jump_target", "size": 24, "name": "jump_false"},
-            {"type": "reg", "size": 16, "name": "cond_reg"},
-            {"type": "jump_target", "size": 24, "name": "jump_true"}
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            }
         ],
         "description": "if (reg[cond_reg]) ip = jump_true else ip = jump_false"
+    },
+    "104": {
+        "name": "NEW_INSTANCE_2_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "constructor_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = new reg[constructor_reg](reg[arg1_reg], reg[arg2_reg]);"
+    },
+    "105": {
+        "name": "INCREMENT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "reg_to_inc"
+            }
+        ],
+        "description": "reg[dest] = reg[reg_to_inc]++;"
+    },
+    "106": {
+        "name": "DEFINE_PROP_AND_NEW_ARRAY",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_arr_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "Object.defineProperty(reg[obj_reg], reg[prop_reg], {value: reg[val_reg], ...}); reg[dest_arr_reg] = [];"
+    },
+    "107": {
+        "name": "GET_PROP_AND_ARRAY_PUSH",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "reg[dest] = reg[obj_reg][reg[prop_reg]]; reg[array_reg].push(reg[val_reg]);"
+    },
+    "108": {
+        "name": "NATIVE_XXTEA_ENCRYPT",
+        "operands": [],
+        "description": "Hardcoded function that performs XXTEA-like encryption on its arguments."
+    },
+    "109": {
+        "name": "NATIVE_XXTEA_DECRYPT",
+        "operands": [],
+        "description": "Hardcoded function that performs XXTEA-like decryption on its arguments."
+    },
+    "110": {
+        "name": "CALL_WITH_CONTEXT_APPLY",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "args_array_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = reg[obj_reg].apply(reg[ctx_reg], reg[args_array_reg]);"
+    },
+    "111": {
+        "name": "NATIVE_MODULE_EXPORT",
+        "operands": [],
+        "description": "Hardcoded function that handles module exports for different environments (CommonJS, AMD, global)."
+    },
+    "112": {
+        "name": "DECRYPT_AND_ARRAY_PUSH_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[array_reg].push(reg[val1_reg], reg[val2_reg]);"
+    },
+    "113": {
+        "name": "GET_GLOBAL_AND_IN",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_in_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name]; reg[dest_in_reg] = reg[prop_reg] in reg[obj_reg];"
+    },
+    "114": {
+        "name": "NATIVE_SET_STORAGE",
+        "operands": [],
+        "description": "Hardcoded function to set an item in sessionStorage, localStorage, and document.cookie."
+    },
+    "115": {
+        "name": "DECRYPT_AND_STRICT_NOT_EQUAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest_cmp_reg] = (reg[left_reg] !== reg[right_reg]);"
+    },
+    "116": {
+        "name": "MULTIPLY",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = reg[src1_reg] * reg[src2_reg];"
+    },
+    "117": {
+        "name": "GET_GLOBAL_AND_NEW_INSTANCE_0_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "constructor_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_new_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
+        ],
+        "description": "global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name]; reg[dest_new_reg] = new reg[constructor_reg]();"
+    },
+    "118": {
+        "name": "JUMP_IF_GTE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            }
+        ],
+        "description": "reg[dest_cmp] = (reg[left_reg] >= reg[right_reg]); ip = target;"
+    },
+    "119": {
+        "name": "GET_PROP_AND_BITWISE_AND",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_and_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_and_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_and_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_and_reg] = reg[src1_and_reg] & reg[src2_and_reg];"
+    },
+    "120": {
+        "name": "GET_GLOBAL_AND_CALL_2_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            }
+        ],
+        "description": "global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name]; reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg]);"
+    },
+    "121": {
+        "name": "NATIVE_GET_TESTID_COOKIE",
+        "operands": [],
+        "description": "Hardcoded function to find and store the `__ac_testid` cookie value."
+    },
+    "122": {
+        "name": "DEFINE_PROPERTIES_2_AND_CALL_1_ARG",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_def_reg"
+            }
+        ],
+        "description": "Defines two properties on an object and then makes a function call."
+    },
+    "123": {
+        "name": "CALL_1_ARG_AND_BITWISE_AND",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_and_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_and_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_and_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); reg[dest_and_reg] = reg[src1_and_reg] & reg[src2_and_reg];"
+    },
+    "124": {
+        "name": "GET_PROP_AND_CALL_3_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            }
+        ],
+        "description": "reg[dest] = reg[obj_get_reg][reg[prop_reg]]; reg[dest_call_reg] = reg[obj_call_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg], reg[arg3_reg]);"
+    },
+    "125": {
+        "name": "NEW_ARRAY_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_arr_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            }
+        ],
+        "description": "reg[dest_arr_reg] = []; str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
+    },
+    "126": {
+        "name": "NATIVE_DOM_READY",
+        "operands": [],
+        "description": "Hardcoded function. If document is 'complete' or 'interactive', dispatches custom DOM ready events."
+    },
+    "127": {
+        "name": "NEW_INSTANCE_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "constructor_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
+        ],
+        "description": "reg[dest] = new reg[constructor_reg](); str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
+    },
+    "128": {
+        "name": "GET_PROP_AND_SHIFT_RIGHT_UNSIGNED",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "shift_val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_shift_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_shift_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_shift_reg] = reg[src_shift_reg] >>> reg[shift_val_reg];"
+    },
+    "129": {
+        "name": "GET_GLOBAL_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
+        ],
+        "description": "global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name]; reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "130": {
+        "name": "NEW_ARRAY_AND_ARRAY_PUSH",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_arr_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            }
+        ],
+        "description": "reg[array_reg].push(reg[val_reg]); reg[dest_arr_reg] = [];"
+    },
+    "131": {
+        "name": "NATIVE_INITIALIZE_SDK_CORE",
+        "operands": [],
+        "description": "Hardcoded function that performs the main SDK initialization, setting up global state and message metadata based on provided configurations."
+    },
+    "132": {
+        "name": "SUBTRACT_REVERSED",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_reg"
+            }
+        ],
+        "description": "reg[dest] = reg[src2_reg] - reg[src1_reg];"
+    },
+    "133": {
+        "name": "MOVE_AND_JUMP",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            }
+        ],
+        "description": "reg[dest_move_reg] = reg[src_move_reg]; if(reg[cond_reg]) ip = jump_true else ip = jump_false;"
+    },
+    "134": {
+        "name": "NOT_AND_GOTO",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "reg[dest] = !reg[src_reg]; ip = target;"
+    },
+    "135": {
+        "name": "DECRYPT_STRING_AND_SET_PROP_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_set_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest_set_reg] = (reg[obj_reg][reg[prop_reg]] = reg[val_reg]);"
+    },
+    "136": {
+        "name": "MOVE_IMM8_TO_REG",
+        "operands": [
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "value"
+            }
+        ],
+        "description": "reg[dest_reg] = value"
+    },
+    "137": {
+        "name": "TYPEOF_AND_STRICT_EQUAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_typeof_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_typeof_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_cmp_reg"
+            }
+        ],
+        "description": "reg[dest_typeof_reg] = typeof reg[src1_typeof_reg]; reg[dest_cmp_reg] = (reg[left_cmp_reg] == reg[right_cmp_reg]);"
+    },
+    "138": {
+        "name": "NATIVE_ARRAY_DESTRUCTURE",
+        "operands": [],
+        "description": "Hardcoded function that destructures an array or iterable into a new array, with an optional limit."
+    },
+    "139": {
+        "name": "JUMP_IF_GTE",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            }
+        ],
+        "description": "reg[dest_cmp_reg] = (reg[left_reg] >= reg[right_reg]); if (reg[cond_reg]) ip = jump_true else ip = jump_false;"
+    },
+    "140": {
+        "name": "BITWISE_OR_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_or_reg"
+            }
+        ],
+        "description": "reg[dest_or_reg] = reg[src1_or_reg] | reg[src2_or_reg]; reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "141": {
+        "name": "GET_FROM_DEEP_CLOSURE_AND_DECRYPT",
+        "operands": [
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "depth"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_closure_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_closure_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            }
+        ],
+        "description": "temp = closure; for (i=0; i<depth; i++) temp = temp.D; reg[dest_closure_reg] = temp.u[src_closure_reg]; str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
+    },
+    "142": {
+        "name": "NATIVE_GET_XMS_TOKEN",
+        "operands": [],
+        "description": "Hardcoded function that retrieves the value associated with the key 'xmst' from local storage, returning it or an empty string."
     },
     "143": {
         "name": "SUBTRACT",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"},
-            {"type": "reg", "size": 16, "name": "src2_reg"},
-            {"type": "reg", "size": 16, "name": "src1_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_reg"
+            }
         ],
         "description": "reg[dest_reg] = reg[src1_reg] - reg[src2_reg]"
+    },
+    "144": {
+        "name": "NATIVE_IS_VIVO_BROWSER",
+        "operands": [],
+        "description": "Hardcoded function to check if the user agent contains 'vivobrowser'."
+    },
+    "145": {
+        "name": "NATIVE_GET_RTC_IP",
+        "operands": [],
+        "description": "Hardcoded function to get local IP address via WebRTC STUN request. Returns a Promise."
+    },
+    "146": {
+        "name": "CALL_0_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = reg[dest_reg].call(reg[obj_reg]);"
+    },
+    "147": {
+        "name": "CALL_1_ARG_AND_GET_GLOBAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]); global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name];"
+    },
+    "148": {
+        "name": "NATIVE_AES_ENCRYPT",
+        "operands": [],
+        "description": "Hardcoded function to perform AES-like encryption on provided data."
+    },
+    "149": {
+        "name": "NEW_ARRAY_AND_ARRAY_PUSH_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_arr_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            }
+        ],
+        "description": "reg[dest_arr_reg] = []; reg[array_reg].push(reg[val1_reg], reg[val2_reg]);"
+    },
+    "150": {
+        "name": "SET_PROP_AND_GET_GLOBAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_set_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            }
+        ],
+        "description": "reg[dest_set_reg] = (reg[obj_reg][reg[prop_reg]] = reg[val_reg]); global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name];"
+    },
+    "151": {
+        "name": "NATIVE_MD5",
+        "operands": [],
+        "description": "Hardcoded function that provides an MD5 hashing implementation, including HMAC."
+    },
+    "152": {
+        "name": "GET_PROPERTY_AND_GOTO",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "reg[dest] = reg[obj_reg][reg[prop_reg]]; ip = target;"
+    },
+    "153": {
+        "name": "NATIVE_GET_MODULE_OR_DEFAULT",
+        "operands": [],
+        "description": "Hardcoded function that checks for `__esModule` and returns `module.default` if available, otherwise returns the module itself."
+    },
+    "154": {
+        "name": "NO_OP",
+        "operands": [],
+        "description": "No operation. Sets the return value to undefined."
+    },
+    "155": {
+        "name": "DEFINE_PROPERTIES_2_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            }
+        ],
+        "description": "Defines two properties on an object, then decrypts a string."
+    },
+    "156": {
+        "name": "BITWISE_AND",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_reg"
+            }
+        ],
+        "description": "reg[dest] = reg[dest] & reg[src2_reg];"
+    },
+    "157": {
+        "name": "DEFINE_PROPERTIES_3",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            }
+        ],
+        "description": "Defines three properties on an object with their corresponding values."
+    },
+    "158": {
+        "name": "CREATE_UNDEFINED_REG",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "reg_idx"
+            }
+        ],
+        "description": "reg[reg_idx] = {v: undefined};"
+    },
+    "159": {
+        "name": "NEW_INSTANCE_1_ARG",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "constructor_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            }
+        ],
+        "description": "reg[dest] = new reg[constructor_reg](reg[arg_reg]);"
+    },
+    "160": {
+        "name": "STRICT_NOT_EQUAL_AND_GOTO",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = reg[left_reg] !== reg[right_reg]; ip = target;"
+    },
+    "161": {
+        "name": "CALL_4_ARGS_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg4_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg], reg[arg3_reg], reg[arg4_reg]); str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
     },
     "162": {
         "name": "THROW",
         "operands": [
-            {"type": "reg", "size": 16, "name": "err_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "err_reg"
+            }
         ],
-        "description": "throw reg[err_reg]"
+        "description": "Throws the value of the specified register as an exception."
     },
     "163": {
         "name": "NEW_ARRAY",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            }
         ],
         "description": "reg[dest_reg] = []"
     },
-    "172": {
-        "name": "ARRAY_PUSH",
+    "164": {
+        "name": "STRICT_EQUAL_AND_MOVE",
         "operands": [
-            {"type": "reg", "size": 16, "name": "array_reg"},
-            {"type": "reg", "size": 16, "name": "value_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            }
         ],
-        "description": "reg[array_reg].push(reg[value_reg])"
+        "description": "reg[dest_cmp] = (reg[left_cmp_reg] === reg[right_cmp_reg]); reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "165": {
+        "name": "ARRAY_PUSH_3",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            }
+        ],
+        "description": "reg[array_reg].push(reg[val1_reg], reg[val2_reg], reg[val3_reg]);"
+    },
+    "166": {
+        "name": "INSTANCEOF",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "constructor_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = reg[obj_reg] instanceof reg[constructor_reg];"
+    },
+    "167": {
+        "name": "GET_PROP_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
+    },
+    "168": {
+        "name": "POP_HANDLER_AND_GOTO",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "vm.A.pop(); ip = target;"
+    },
+    "169": {
+        "name": "NATIVE_DISPATCH_DOM_READY_EVENTS",
+        "operands": [],
+        "description": "Hardcoded function that dispatches a series of custom DOM readiness and performance-related events."
+    },
+    "170": {
+        "name": "GET_PROP_AND_LT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            }
+        ],
+        "description": "reg[dest_move_reg] = reg[src_move_reg]; reg[dest_cmp_reg] = reg[left_cmp_reg] < reg[right_cmp_reg];"
+    },
+    "171": {
+        "name": "NATIVE_CHECK_TRUSTED",
+        "operands": [],
+        "description": "Hardcoded function. If the first argument's `isTrusted` property is not exactly `true`, it sets the second argument's `isTrusted` to `2`."
+    },
+    "172": {
+        "name": "MOVE_IMM8_TO_REG_AND_CREATE_CALLBACK",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ret_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "imm_val"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_imm_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_func_reg"
+            }
+        ],
+        "description": "reg[dest_imm_reg] = imm_val; reg[dest_func_reg] = function() { ip = target; ... };"
+    },
+    "173": {
+        "name": "JUMP_IF_STRICT_EQUAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            }
+        ],
+        "description": "reg[dest_cmp_reg] = (reg[left_reg] === reg[right_reg]); if (reg[cond_reg]) ip = jump_true else ip = jump_false;"
+    },
+    "174": {
+        "name": "DEFINE_PROPERTIES_2_AND_DECRYPT_STRING_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            }
+        ],
+        "description": "Defines two properties on an object, then decrypts a string."
+    },
+    "175": {
+        "name": "NATIVE_TRIGGER_PAGE_UNLOAD_EVENT_2",
+        "operands": [],
+        "description": "Hardcoded function that dispatches a custom 'pageUnload' event if it hasn't been dispatched before. Appears redundant with opcode 91."
+    },
+    "176": {
+        "name": "DEFINE_PROPERTIES_3_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            }
+        ],
+        "description": "Defines three properties on an object, then decrypts a string."
+    },
+    "177": {
+        "name": "DEFINE_PROPERTY_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            }
+        ],
+        "description": "Object.defineProperty(reg[obj_reg], reg[prop_reg], {value: reg[val_reg], ...}); reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "178": {
+        "name": "NEW_ARRAY_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_arr_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            }
+        ],
+        "description": "reg[array_reg].push(reg[val_reg]); reg[dest_arr_reg] = [];"
+    },
+    "179": {
+        "name": "NOT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            }
+        ],
+        "description": "reg[dest] = !reg[src_reg];"
+    },
+    "180": {
+        "name": "JUMP_IF_GTE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = (reg[left_reg] >= reg[right_reg]); if (reg[cond_reg]) { ip = some_target; } else { ip = target; }"
+    },
+    "181": {
+        "name": "GET_PROPERTY",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "reg[dest] = reg[obj_reg][reg[prop_reg]];"
+    },
+    "182": {
+        "name": "DEFINE_PROPERTIES_3_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            }
+        ],
+        "description": "Defines three properties on an object, then decrypts a string."
+    },
+    "183": {
+        "name": "GET_PROP_AND_DECRYPT_STRING_AND_STRICT_NOT_EQUAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest_cmp_reg] = (reg[left_cmp_reg] !== reg[right_cmp_reg]);"
+    },
+    "184": {
+        "name": "GET_PROP_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "185": {
+        "name": "GET_PROP_AND_BITWISE_OR",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_or_reg] = reg[src1_or_reg] | reg[src2_or_reg];"
+    },
+    "186": {
+        "name": "CALL_2_ARGS_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg]); str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
+    },
+    "187": {
+        "name": "GET_PROPERTY_AND_NOT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_not_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_not_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_not_reg] = !reg[src_not_reg];"
+    },
+    "188": {
+        "name": "CALL_WITH_CONTEXT_0_ARGS",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg]);"
+    },
+    "189": {
+        "name": "NATIVE_SET_REPORTING_URLS",
+        "operands": [],
+        "description": "Hardcoded function that sets the `reportUrls` property of an object based on a host and predefined paths."
+    },
+    "190": {
+        "name": "DECODE_STRING_FROM_CHARCODES",
+        "operands": [],
+        "description": "Hardcoded function that decrypts a string by converting character codes and performing bitwise operations."
+    },
+    "191": {
+        "name": "NATIVE_HASH_STRING_TO_INT",
+        "operands": [],
+        "description": "Hardcoded function that computes a 32-bit integer hash from a string using a multiplicative algorithm."
+    },
+    "192": {
+        "name": "NATIVE_UNWRAP_ES_MODULE",
+        "operands": [],
+        "description": "Hardcoded function that checks if a module is an ES module and returns `module.default` if it exists."
+    },
+    "193": {
+        "name": "NATIVE_SAFE_CLONE",
+        "operands": [],
+        "description": "Hardcoded function that creates a shallow copy of an array or handles special cases for Map, Set, and Arguments objects."
+    },
+    "194": {
+        "name": "JUMP_IF_GET_PROP",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "reg[dest] = reg[obj_reg][reg[prop_reg]]; if(reg[cond_reg]) ip = jump_true else ip = jump_false;"
+    },
+    "195": {
+        "name": "NATIVE_GET_TYPE_CODE",
+        "operands": [],
+        "description": "Hardcoded function that returns a numeric code representing the JavaScript type of its argument."
+    },
+    "196": {
+        "name": "TYPEOF_ARG",
+        "operands": [],
+        "description": "Performs a `typeof` operation on an argument from the call frame and stores the result."
+    },
+    "197": {
+        "name": "NATIVE_CIRCULAR_BUFFER",
+        "operands": [],
+        "description": "Hardcoded function that creates and returns a circular buffer object with get, push, data, and includes methods."
+    },
+    "198": {
+        "name": "BITWISE_OR_AND_MOVE_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            }
+        ],
+        "description": "reg[dest_or_reg] = reg[src1_or_reg] | reg[src2_or_reg]; reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "199": {
+        "name": "GET_FROM_DEEP_CLOSURE_AND_DECRYPT_GLOBAL",
+        "operands": [
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "depth"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_closure_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_closure_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            }
+        ],
+        "description": "reg[dest_closure_reg] = closure[depth][src_closure_reg]; str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = global[str];"
+    },
+    "200": {
+        "name": "NATIVE_HASH_STRING_WITH_GENERATOR",
+        "operands": [],
+        "description": "Hardcoded function that hashes a string by iterating over it with a generator function and applying a multiplicative hash algorithm."
+    },
+    "201": {
+        "name": "NATIVE_URL_APPEND_PARAMS",
+        "operands": [],
+        "description": "Hardcoded function that takes a URL and an array of key-value pairs and appends them as query parameters."
+    },
+    "202": {
+        "name": "NATIVE_CHECK_PASSIVE_EVENTS",
+        "operands": [],
+        "description": "Hardcoded function to check for browser support of passive event listeners."
+    },
+    "203": {
+        "name": "DECRYPT_AND_STRICT_NOT_EQUAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest_cmp_reg] = (reg[left_reg] != reg[right_reg]);"
+    },
+    "204": {
+        "name": "MOVE_AND_GOTO",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "reg[dest] = reg[src]; ip = target;"
+    },
+    "205": {
+        "name": "NOT",
+        "operands": [],
+        "description": "reg[dest] = !reg[src];"
+    },
+    "206": {
+        "name": "NATIVE_XEX_GET_TOKEN",
+        "operands": [],
+        "description": "Hardcoded function that calls window._xex.g() to get a token, likely related to anti-bot measures."
+    },
+    "207": {
+        "name": "DECODE_HEX_STRING",
+        "operands": [],
+        "description": "Hardcoded function to decode a hex string into a Uint8Array."
     },
     "208": {
         "name": "ADD",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"},
-            {"type": "reg", "size": 16, "name": "src2_reg"},
-            {"type": "reg", "size": 16, "name": "src1_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_reg"
+            }
         ],
         "description": "reg[dest_reg] = reg[src1_reg] + reg[src2_reg]"
     },
-    "213": {
-        "name": "STRICT_EQUAL",
+    "209": {
+        "name": "CREATE_CALLBACK",
         "operands": [
-            {"type": "reg", "size": 16, "name": "dest_reg"},
-            {"type": "reg", "size": 16, "name": "left_reg"},
-            {"type": "reg", "size": 16, "name": "right_reg"}
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ret_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
         ],
-        "description": "reg[dest_reg] = (reg[left_reg] === reg[right_reg])"
+        "description": "reg[dest_reg] = function() { ip = target; ... };"
     },
-    "222": {
+    "210": {
+        "name": "NATIVE_CHECK_NIGHTMARE_JS",
+        "operands": [],
+        "description": "Hardcoded function. Checks for the presence of the Nightmare.js automation framework."
+    },
+    "211": {
+        "name": "CALL_2_ARGS_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg]); reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "212": {
+        "name": "JUMP_IF_GET_PROP",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            }
+        ],
+        "description": "reg[dest] = reg[obj_reg][reg[prop_reg]]; if(reg[cond_reg]) ip = jump_true else ip = jump_false;"
+    },
+    "213": {
+        "name": "NATIVE_GET_VARIABLE_TYPE_CATEGORY",
+        "operands": [],
+        "description": "Hardcoded function that categorizes a variable into a numeric type code (e.g., boolean, function, number, string, array, object)."
+    },
+    "214": {
+        "name": "BITWISE_OR_AND_MOVE_3",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_or_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_or_reg"
+            }
+        ],
+        "description": "reg[dest_or_reg] = reg[src1_or_reg] | reg[src2_or_reg]; reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "215": {
+        "name": "GET_FROM_DEEP_CLOSURE_AND_GET_GLOBAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_global_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "depth"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_closure_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_closure_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            }
+        ],
+        "description": "reg[dest_closure_reg] = closure[depth][src_closure_reg]; global_name = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_global_reg] = global[global_name];"
+    },
+    "216": {
+        "name": "NATIVE_ARRAY_SLICE",
+        "operands": [],
+        "description": "Hardcoded function that creates a shallow copy of an array up to a specified length, similar to `arr.slice(0, length)`."
+    },
+    "217": {
+        "name": "STRICT_EQUAL_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_cmp_reg"
+            }
+        ],
+        "description": "reg[dest_cmp_reg] = (reg[left_cmp_reg] === reg[right_cmp_reg]); reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "218": {
+        "name": "INSTANCE_OF",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "constructor_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = reg[obj_reg] instanceof reg[constructor_reg];"
+    },
+    "219": {
         "name": "GOTO",
         "operands": [
-            {"type": "jump_target", "size": 24, "name": "target"}
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
         ],
         "description": "ip = target"
+    },
+    "220": {
+        "name": "JUMP_IF_STRICT_NOT_EQUAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_true"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "jump_false"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            }
+        ],
+        "description": "reg[dest_cmp_reg] = (reg[left_reg] !== reg[right_reg]); if (reg[cond_reg]) ip = jump_true else ip = jump_false;"
+    },
+    "221": {
+        "name": "DEFINE_PROPERTIES_2_AND_DECRYPT_STRING_3",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            }
+        ],
+        "description": "Defines two properties on an object, then decrypts a string."
+    },
+    "222": {
+        "name": "NATIVE_XEX_CLEANUP_2",
+        "operands": [],
+        "description": "Hardcoded function that calls window._xex.r() to perform cleanup tasks. Appears redundant with opcode 175."
+    },
+    "223": {
+        "name": "DEFINE_PROPERTIES_3_AND_DECRYPT_STRING_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop1_reg"
+            }
+        ],
+        "description": "Defines three properties on an object, then decrypts a string."
+    },
+    "224": {
+        "name": "DEFINE_PROPERTY_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            }
+        ],
+        "description": "Object.defineProperty(reg[obj_reg], reg[prop_reg], {value: reg[val_reg], ...}); reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "225": {
+        "name": "NEW_ARRAY_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            }
+        ],
+        "description": "reg[array_reg].push(reg[val_reg]); reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "226": {
+        "name": "BROWSER_CLIENT",
+        "operands": [],
+        "description": "Hardcoded function that represents the main entry point and logic for a browser-side monitoring/SDK client (Slardar)."
+    },
+    "227": {
+        "name": "GET_PROP_AND_GT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_cmp_reg] = (reg[left_reg] > reg[right_reg]);"
+    },
+    "228": {
+        "name": "MOVE_IMM8_2",
+        "operands": [
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "imm1"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "imm2"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest2_reg"
+            }
+        ],
+        "description": "reg[dest1_reg] = imm1; reg[dest2_reg] = imm2;"
+    },
+    "229": {
+        "name": "GET_PROP_AND_ADD",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_add_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_add_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src1_add_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_add_reg] = reg[src1_add_reg] + reg[src2_add_reg];"
+    },
+    "230": {
+        "name": "ADD_AND_GOTO",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src2_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "reg[dest] = reg[dest] + reg[src2_reg]; ip = target;"
+    },
+    "231": {
+        "name": "CALL_4_ARGS_AND_DECRYPT_STRING",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg4_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx], reg[arg1], reg[arg2], reg[arg3], reg[arg4]); str = decrypt_str(E[key1], E[key2]); reg[dest_str_reg] = str;"
+    },
+    "232": {
+        "name": "GET_FROM_DEEP_CLOSURE_AND_NEW_OBJECT",
+        "operands": [
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "depth"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_closure_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_closure_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "reg[dest_closure_reg] = closure[depth][src_closure_reg][reg[prop_reg]]; reg[dest_obj_reg] = {};"
+    },
+    "233": {
+        "name": "CALL_2_ARGS_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_move_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            }
+        ],
+        "description": "reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg]); reg[dest_move_reg] = reg[src_move_reg];"
+    },
+    "234": {
+        "name": "NATIVE_UTF8_ENCODE",
+        "operands": [],
+        "description": "Hardcoded function that encodes a string to its UTF-8 representation."
+    },
+    "235": {
+        "name": "NATIVE_SPREAD_ITERABLE",
+        "operands": [],
+        "description": "Hardcoded function to spread an iterable into an array, similar to the `...` operator."
     },
     "236": {
         "name": "POP_EXCEPTION_HANDLER",
         "operands": [],
         "description": "Pops one exception handler frame from the call stack."
+    },
+    "237": {
+        "name": "GOTO_IF_TRUE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "cond_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            }
+        ],
+        "description": "if (reg[cond_reg]) ip = target;"
+    },
+    "238": {
+        "name": "GET_PROP_AND_GT",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_get_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "left_cmp_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_cmp_reg"
+            }
+        ],
+        "description": "reg[dest_get_reg] = reg[obj_reg][reg[prop_reg]]; reg[dest_cmp_reg] = (reg[left_cmp_reg] > reg[right_cmp_reg]);"
+    },
+    "239": {
+        "name": "DECREMENT_AND_JUMP",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "reg_to_dec"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            }
+        ],
+        "description": "reg[dest_reg] = reg[reg_to_dec]--; if(reg[dest_reg] == 0) ip = next; else ip = current;"
+    },
+    "240": {
+        "name": "THROW_NEW_ERROR",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_err_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "constructor_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "msg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "err_obj_reg"
+            }
+        ],
+        "description": "reg[dest_err_reg] = new reg[constructor_reg](reg[msg_reg]); throw reg[err_obj_reg];"
+    },
+    "241": {
+        "name": "ARRAY_PUSH_3_AND_DECRYPT_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "array_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val3_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            }
+        ],
+        "description": "reg[array_reg].push(reg[val1_reg], reg[val2_reg], reg[val3_reg]); str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str;"
+    },
+    "242": {
+        "name": "NATIVE_UPDATE_MS_TOKEN",
+        "operands": [],
+        "description": "Hardcoded function that updates the `msToken` in a global state object."
+    },
+    "243": {
+        "name": "MOVE_IMM8_2",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest2_reg"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "val1"
+            },
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "val2"
+            }
+        ],
+        "description": "reg[dest1_reg] = val1; reg[dest2_reg] = val2;"
+    },
+    "244": {
+        "name": "GET_GLOBAL_AND_REGEXP",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "pattern_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "flags_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest] = new RegExp(reg[pattern_reg], reg[flags_reg]);"
+    },
+    "245": {
+        "name": "TYPEOF",
+        "operands": [],
+        "description": "reg[dest] = typeof reg[src];"
+    },
+    "246": {
+        "name": "CALL_2_ARGS_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_str_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg2_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "key1_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg1_reg"
+            }
+        ],
+        "description": "str = decrypt_str(E[key1_reg], E[key2_reg]); reg[dest_str_reg] = str; reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg1_reg], reg[arg2_reg]);"
+    },
+    "247": {
+        "name": "POP_HANDLER",
+        "operands": [],
+        "description": "Pops one exception handler from the stack without jumping."
+    },
+    "248": {
+        "name": "NEW_OBJECT_AND_ARRAY",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_arr_reg"
+            }
+        ],
+        "description": "reg[dest_obj_reg] = {}; reg[dest_arr_reg] = [];"
+    },
+    "249": {
+        "name": "SHIFT_RIGHT_AND_CALL_1_ARG",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "shift_val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "arg_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "obj_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_shift_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_call_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "ctx_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_shift_reg"
+            }
+        ],
+        "description": "reg[dest_shift_reg] = reg[src_shift_reg] >> reg[shift_val_reg]; reg[dest_call_reg] = reg[obj_reg].call(reg[ctx_reg], reg[arg_reg]);"
+    },
+    "250": {
+        "name": "SET_PROPERTY_EQUAL",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "val_reg"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "prop_reg"
+            }
+        ],
+        "description": "reg[dest] = (reg[dest][reg[prop_reg]] = reg[val_reg]);"
+    },
+    "251": {
+        "name": "NATIVE_MAIN",
+        "operands": [],
+        "description": "Main entry point of the entire script. Initializes VM state, sets up many native functions, and starts the main execution loop."
+    },
+    "252": {
+        "name": "DECRYPT_STRING_RC4",
+        "operands": [],
+        "description": "Hardcoded function that performs RC4-like string decryption."
+    },
+    "253": {
+        "name": "STRICT_EQUAL_AND_GOTO",
+        "operands": [
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "right_reg"
+            }
+        ],
+        "description": "reg[dest] = (reg[dest] === reg[right_reg]); ip = target;"
+    },
+    "254": {
+        "name": "GET_FROM_DEEP_CLOSURE_AND_GOTO",
+        "operands": [
+            {
+                "type": "imm",
+                "size": 8,
+                "name": "depth"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            },
+            {
+                "type": "jump_target",
+                "size": 24,
+                "name": "target"
+            },
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "src_reg"
+            }
+        ],
+        "description": "temp = vm; for (i=0; i<depth; i++) temp = temp.D; reg[dest_reg] = temp.u[src_reg]; ip = target;"
+    },
+    "255": {
+        "name": "POP_HANDLER_AND_MOVE",
+        "operands": [
+            {
+                "type": "reg",
+                "size": 16,
+                "name": "dest_reg"
+            }
+        ],
+        "description": "vm.A.pop(); reg[dest_reg] = vm.O.pop().v;"
     }
 }
